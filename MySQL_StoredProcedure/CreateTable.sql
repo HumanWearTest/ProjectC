@@ -36,7 +36,7 @@ CREATE TABLE ItemMaster(
     item_num                CHAR(5)         NOT NULL,
     category_num            CHAR(2)         NOT NULL,
     manufacturer            VARCHAR(10)     NOT NULL,
-    product_name            VARCHAR(10)     NOT NULL,
+    product_name            VARCHAR(12)     NOT NULL,
     unit_price              INT             NOT NULL,
     stock_quantity          INT             NOT NULL,
     PRIMARY KEY(item_num),
@@ -68,3 +68,6 @@ CREATE TABLE OrderData(
 -- 列変更例
 ALTER TABLE CustomerMaster
 MODIFY points INT NOT NULL;
+
+ALTER TABLE ItemMaster
+MODIFY product_name  VARCHAR(12)     NOT NULL;
