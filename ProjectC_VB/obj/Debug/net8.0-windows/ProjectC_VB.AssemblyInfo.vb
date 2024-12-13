@@ -16,7 +16,7 @@ Imports System.Reflection
 <Assembly: System.Reflection.AssemblyCompanyAttribute("ProjectC_VB"),  _
  Assembly: System.Reflection.AssemblyConfigurationAttribute("Debug"),  _
  Assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0"),  _
- Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b024f2fad9d3812cff7bd230427d265e8fe67a80"),  _
+ Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0e0faed2f39ca873363cc7d0f8c2965e1657891a"),  _
  Assembly: System.Reflection.AssemblyProductAttribute("ProjectC_VB"),  _
  Assembly: System.Reflection.AssemblyTitleAttribute("ProjectC_VB"),  _
  Assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0"),  _
