@@ -115,7 +115,7 @@ VALUES
     ('22','歯ブラシ')
 ;
 
-INSERT INTO ItemMaster(item_num, category_num, manufacturer, product_name, unit_price, stock_quantity)
+INSERT INTO ItemMaster(item_num, category_num, manufacturer, item_name_name, unit_price, stock_quantity)
 VALUES
     ('a0001','11','サンスター','緑でサラナ',1540,20),
     ('a0002','13','太田製薬','太田胃散',1200,21),
