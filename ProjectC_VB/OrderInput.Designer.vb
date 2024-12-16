@@ -44,16 +44,10 @@ Partial Class OrderInput
         付与ポイント = New DataGridViewTextBoxColumn()
         btn_movetoMain = New Button()
         Label1 = New Label()
-        TextBox1 = New TextBox()
-        TextBox2 = New TextBox()
-        DataGridView2 = New DataGridView()
-        btn_test1 = New Button()
-        btn_test2 = New Button()
-        btn_test3 = New Button()
-        TextBox3 = New TextBox()
         ListBox1 = New ListBox()
+        btnSave = New Button()
+        Label2 = New Label()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
-        CType(DataGridView2, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' DataGridView1
@@ -71,11 +65,11 @@ Partial Class OrderInput
         DataGridView1.Columns.AddRange(New DataGridViewColumn() {行, 年月日, 顧客名, 商品名, 単価, 数量, 金額, 支店名, 付与ポイント})
         DataGridView1.ImeMode = ImeMode.Disable
         DataGridView1.Location = New Point(17, 145)
-        DataGridView1.MinimumSize = New Size(1150, 391)
+        DataGridView1.MinimumSize = New Size(1235, 395)
         DataGridView1.Name = "DataGridView1"
         DataGridView1.RowHeadersVisible = False
         DataGridView1.RowTemplate.Height = 36
-        DataGridView1.Size = New Size(1233, 391)
+        DataGridView1.Size = New Size(1235, 395)
         DataGridView1.TabIndex = 1
         ' 
         ' 行
@@ -107,6 +101,8 @@ Partial Class OrderInput
         DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle4.Font = New Font("メイリオ", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(128))
         顧客名.DefaultCellStyle = DataGridViewCellStyle4
+        顧客名.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox
+        顧客名.DisplayStyleForCurrentCellOnly = True
         顧客名.HeaderText = "顧客名"
         顧客名.Name = "顧客名"
         顧客名.Width = 190
@@ -115,7 +111,10 @@ Partial Class OrderInput
         ' 
         DataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle5.Font = New Font("メイリオ", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(128))
+        DataGridViewCellStyle5.WrapMode = DataGridViewTriState.False
         商品名.DefaultCellStyle = DataGridViewCellStyle5
+        商品名.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox
+        商品名.DisplayStyleForCurrentCellOnly = True
         商品名.HeaderText = "商品名"
         商品名.Name = "商品名"
         商品名.Width = 250
@@ -163,6 +162,8 @@ Partial Class OrderInput
         DataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle9.Font = New Font("メイリオ", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(128))
         支店名.DefaultCellStyle = DataGridViewCellStyle9
+        支店名.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox
+        支店名.DisplayStyleForCurrentCellOnly = True
         支店名.HeaderText = "支店名"
         支店名.Name = "支店名"
         支店名.Width = 150
@@ -198,99 +199,63 @@ Partial Class OrderInput
         Label1.AutoSize = True
         Label1.BackColor = Color.White
         Label1.Font = New Font("游ゴシック", 27.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(128))
-        Label1.Location = New Point(493, 18)
+        Label1.Location = New Point(497, 45)
         Label1.Name = "Label1"
         Label1.Size = New Size(242, 48)
         Label1.TabIndex = 3
         Label1.Text = "受注入力画面"
         ' 
-        ' TextBox1
-        ' 
-        TextBox1.Location = New Point(979, 55)
-        TextBox1.Name = "TextBox1"
-        TextBox1.Size = New Size(100, 23)
-        TextBox1.TabIndex = 6
-        ' 
-        ' TextBox2
-        ' 
-        TextBox2.Location = New Point(979, 18)
-        TextBox2.Name = "TextBox2"
-        TextBox2.Size = New Size(100, 23)
-        TextBox2.TabIndex = 6
-        ' 
-        ' DataGridView2
-        ' 
-        DataGridView2.AllowUserToAddRows = False
-        DataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView2.Location = New Point(17, 551)
-        DataGridView2.Name = "DataGridView2"
-        DataGridView2.Size = New Size(1233, 422)
-        DataGridView2.TabIndex = 1
-        ' 
-        ' btn_test1
-        ' 
-        btn_test1.Location = New Point(847, 13)
-        btn_test1.Name = "btn_test1"
-        btn_test1.Size = New Size(126, 31)
-        btn_test1.TabIndex = 9
-        btn_test1.Text = "test1"
-        btn_test1.UseVisualStyleBackColor = True
-        ' 
-        ' btn_test2
-        ' 
-        btn_test2.Location = New Point(847, 50)
-        btn_test2.Name = "btn_test2"
-        btn_test2.Size = New Size(126, 31)
-        btn_test2.TabIndex = 9
-        btn_test2.Text = "test2"
-        btn_test2.UseVisualStyleBackColor = True
-        ' 
-        ' btn_test3
-        ' 
-        btn_test3.Location = New Point(847, 90)
-        btn_test3.Name = "btn_test3"
-        btn_test3.Size = New Size(126, 31)
-        btn_test3.TabIndex = 9
-        btn_test3.Text = "test3"
-        btn_test3.UseVisualStyleBackColor = True
-        ' 
-        ' TextBox3
-        ' 
-        TextBox3.Location = New Point(979, 95)
-        TextBox3.Name = "TextBox3"
-        TextBox3.Size = New Size(100, 23)
-        TextBox3.TabIndex = 6
-        ' 
         ' ListBox1
         ' 
+        ListBox1.CausesValidation = False
+        ListBox1.Enabled = False
+        ListBox1.Font = New Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(128))
+        ListBox1.ForeColor = Color.Black
         ListBox1.FormattingEnabled = True
-        ListBox1.ItemHeight = 15
-        ListBox1.Location = New Point(205, 10)
+        ListBox1.ImeMode = ImeMode.NoControl
+        ListBox1.ItemHeight = 25
+        ListBox1.Location = New Point(1002, 105)
         ListBox1.Name = "ListBox1"
-        ListBox1.Size = New Size(250, 124)
+        ListBox1.Size = New Size(250, 29)
         ListBox1.TabIndex = 10
+        ListBox1.TabStop = False
+        ' 
+        ' btnSave
+        ' 
+        btnSave.BackColor = Color.LightGreen
+        btnSave.Font = New Font("Yu Gothic UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(128))
+        btnSave.Location = New Point(585, 557)
+        btnSave.Name = "btnSave"
+        btnSave.Size = New Size(106, 42)
+        btnSave.TabIndex = 11
+        btnSave.Text = "登  録"
+        btnSave.UseVisualStyleBackColor = False
+        ' 
+        ' Label2
+        ' 
+        Label2.AutoSize = True
+        Label2.Location = New Point(1000, 87)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(51, 15)
+        Label2.TabIndex = 12
+        Label2.Text = "メッセージ"
         ' 
         ' OrderInput
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1264, 977)
+        ClientSize = New Size(1264, 611)
+        Controls.Add(Label2)
+        Controls.Add(btnSave)
         Controls.Add(ListBox1)
-        Controls.Add(btn_test3)
-        Controls.Add(btn_test2)
-        Controls.Add(btn_test1)
-        Controls.Add(TextBox2)
-        Controls.Add(TextBox3)
-        Controls.Add(TextBox1)
         Controls.Add(Label1)
         Controls.Add(btn_movetoMain)
-        Controls.Add(DataGridView2)
         Controls.Add(DataGridView1)
-        MinimumSize = New Size(1280, 700)
+        MaximumSize = New Size(1280, 650)
+        MinimumSize = New Size(1280, 650)
         Name = "OrderInput"
         Text = "受注入力画面"
         CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
-        CType(DataGridView2, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -298,12 +263,9 @@ Partial Class OrderInput
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents btn_movetoMain As Button
     Friend WithEvents Label1 As Label
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents DataGridView2 As DataGridView
-    Friend WithEvents btn_test1 As Button
-    Friend WithEvents btn_test2 As Button
-    Friend WithEvents btn_test3 As Button
+    Friend WithEvents ListBox1 As ListBox
+    Friend WithEvents btnSave As Button
+    Friend WithEvents Label2 As Label
     Friend WithEvents 行 As DataGridViewTextBoxColumn
     Friend WithEvents 年月日 As DataGridViewTextBoxColumn
     Friend WithEvents 顧客名 As DataGridViewComboBoxColumn
@@ -313,7 +275,5 @@ Partial Class OrderInput
     Friend WithEvents 金額 As DataGridViewTextBoxColumn
     Friend WithEvents 支店名 As DataGridViewComboBoxColumn
     Friend WithEvents 付与ポイント As DataGridViewTextBoxColumn
-    Friend WithEvents TextBox3 As TextBox
-    Friend WithEvents ListBox1 As ListBox
 
 End Class

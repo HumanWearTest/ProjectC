@@ -5,3 +5,7 @@ CREATE VIEW CustomerComboData AS
 CREATE VIEW ItemNameComboData AS
     SELECT CONCAT(item_num,' ',item_name) AS '商品名' 
     FROM ItemMaster;
+
+CREATE VIEW BranchNameComboData AS
+    SELECT CONCAT(Branch_num,' ',Branch_name) AS '支店名' 
+    FROM Branch;

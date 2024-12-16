@@ -1,16 +1,13 @@
 ﻿Module args
 
-    '' 受注入力画面の表データの日本語列名を定義した配列
-    'Public OrderTableColumn_JP As String() = {
-    '    "行",
-    '    "年月日",
-    '    "単価",
-    '    "数量",
-    '    "金額",
-    '    "付与ポイント"
-    '}
-    ''読み取り専用に設定する列番号配列
-    'Public ReadOnlyColumnsNum As Integer() = {0, 4, 6, 8}
+    Public pointRate As Double = 0.01 'ポイント還元率 1%
 
+    Public InsertOrderDataColumns As String() =
+        {"年月日", "顧客番号", "商品番号", "販売時単価", "数量", "支店番号", "付与ポイント"}
 
+    '挿入するデータの列名と表示列のindexとの組合わせ辞書
+    Public dicInsertOrderDataColumnsNum As New Dictionary(Of String, Integer) From
+        {{"年月日", 1}, {"顧客番号", 2}, {"商品番号", 3}, {"販売時単価", 4}, {"数量", 5}, {"支店番号", 7}, {"付与ポイント", 8}}
+    '表示データをDataTableへ挿入後、加工が必要となる列番号の配列
+    Public editColumnNum As Integer() = {1, 2, 5}
 End Module

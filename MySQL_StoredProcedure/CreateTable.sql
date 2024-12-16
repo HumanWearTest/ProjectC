@@ -47,7 +47,7 @@ CREATE TABLE ItemMaster(
 
 -- 受注データ
 CREATE TABLE OrderData(
-    order_num               INT             NOT NULL,
+    order_num               BIGINT             AUTO_INCREMENT      NOT NULL,
     order_date              DATE            NOT NULL,
     customer_num            CHAR(5)         NOT NULL,
     item_num                CHAR(5)         NOT NULL,
@@ -71,3 +71,6 @@ MODIFY points INT NOT NULL;
 
 ALTER TABLE ItemMaster
 MODIFY product_name  VARCHAR(12)     NOT NULL;
+
+alter table OrderData
+MODIFY customer_num  BIGINT  AUTO_INCREMENT  NOT NULL;
