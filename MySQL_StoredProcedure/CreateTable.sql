@@ -47,7 +47,7 @@ CREATE TABLE ItemMaster(
 
 -- 受注データ
 CREATE TABLE OrderData(
-    order_num               BIGINT             AUTO_INCREMENT      NOT NULL,
+    order_num               BIGINT          AUTO_INCREMENT      NOT NULL,
     order_date              DATE            NOT NULL,
     customer_num            CHAR(5)         NOT NULL,
     item_num                CHAR(5)         NOT NULL,
