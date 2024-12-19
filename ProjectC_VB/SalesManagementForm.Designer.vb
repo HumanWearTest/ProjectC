@@ -29,17 +29,19 @@ Partial Class SalesManagementForm
         Label2 = New Label()
         ListBox1 = New ListBox()
         Button1 = New Button()
-        Button2 = New Button()
-        Button3 = New Button()
-        TextBox1 = New TextBox()
-        TextBox2 = New TextBox()
+        btnPrevious = New Button()
+        btnNext = New Button()
+        txtCurrentPageNum = New TextBox()
+        txtMaxPage = New TextBox()
         Label3 = New Label()
+        Button4 = New Button()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         CType(DataGridView2, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' DataGridView1
         ' 
+        DataGridView1.AllowUserToAddRows = False
         DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridView1.Location = New Point(12, 103)
         DataGridView1.Name = "DataGridView1"
@@ -113,39 +115,39 @@ Partial Class SalesManagementForm
         Button1.Text = "詳細検索"
         Button1.UseVisualStyleBackColor = False
         ' 
-        ' Button2
+        ' btnPrevious
         ' 
-        Button2.Location = New Point(397, 429)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(67, 31)
-        Button2.TabIndex = 15
-        Button2.Text = "前ページへ"
-        Button2.UseVisualStyleBackColor = True
+        btnPrevious.Location = New Point(397, 429)
+        btnPrevious.Name = "btnPrevious"
+        btnPrevious.Size = New Size(67, 31)
+        btnPrevious.TabIndex = 15
+        btnPrevious.Text = "前ページへ"
+        btnPrevious.UseVisualStyleBackColor = True
         ' 
-        ' Button3
+        ' btnNext
         ' 
-        Button3.Location = New Point(639, 429)
-        Button3.Name = "Button3"
-        Button3.Size = New Size(67, 31)
-        Button3.TabIndex = 15
-        Button3.Text = "次ページへ"
-        Button3.UseVisualStyleBackColor = True
+        btnNext.Location = New Point(639, 429)
+        btnNext.Name = "btnNext"
+        btnNext.Size = New Size(67, 31)
+        btnNext.TabIndex = 15
+        btnNext.Text = "次ページへ"
+        btnNext.UseVisualStyleBackColor = True
         ' 
-        ' TextBox1
+        ' txtCurrentPageNum
         ' 
-        TextBox1.Location = New Point(470, 429)
-        TextBox1.Multiline = True
-        TextBox1.Name = "TextBox1"
-        TextBox1.Size = New Size(65, 31)
-        TextBox1.TabIndex = 16
+        txtCurrentPageNum.Location = New Point(470, 429)
+        txtCurrentPageNum.Multiline = True
+        txtCurrentPageNum.Name = "txtCurrentPageNum"
+        txtCurrentPageNum.Size = New Size(65, 31)
+        txtCurrentPageNum.TabIndex = 16
         ' 
-        ' TextBox2
+        ' txtMaxPage
         ' 
-        TextBox2.Location = New Point(568, 429)
-        TextBox2.Multiline = True
-        TextBox2.Name = "TextBox2"
-        TextBox2.Size = New Size(65, 31)
-        TextBox2.TabIndex = 16
+        txtMaxPage.Location = New Point(568, 429)
+        txtMaxPage.Multiline = True
+        txtMaxPage.Name = "txtMaxPage"
+        txtMaxPage.Size = New Size(65, 31)
+        txtMaxPage.TabIndex = 16
         ' 
         ' Label3
         ' 
@@ -157,16 +159,26 @@ Partial Class SalesManagementForm
         Label3.TabIndex = 17
         Label3.Text = "/"
         ' 
+        ' Button4
+        ' 
+        Button4.Location = New Point(817, 21)
+        Button4.Name = "Button4"
+        Button4.Size = New Size(104, 29)
+        Button4.TabIndex = 18
+        Button4.Text = "test:全件表示"
+        Button4.UseVisualStyleBackColor = True
+        ' 
         ' SalesManagementForm
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1111, 625)
+        Controls.Add(Button4)
         Controls.Add(Label3)
-        Controls.Add(TextBox2)
-        Controls.Add(TextBox1)
-        Controls.Add(Button3)
-        Controls.Add(Button2)
+        Controls.Add(txtMaxPage)
+        Controls.Add(txtCurrentPageNum)
+        Controls.Add(btnNext)
+        Controls.Add(btnPrevious)
         Controls.Add(Label2)
         Controls.Add(ListBox1)
         Controls.Add(Label1)
@@ -189,9 +201,10 @@ Partial Class SalesManagementForm
     Friend WithEvents Label2 As Label
     Friend WithEvents ListBox1 As ListBox
     Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button3 As Button
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents btnPrevious As Button
+    Friend WithEvents btnNext As Button
+    Friend WithEvents txtCurrentPageNum As TextBox
+    Friend WithEvents txtMaxPage As TextBox
     Friend WithEvents Label3 As Label
+    Friend WithEvents Button4 As Button
 End Class

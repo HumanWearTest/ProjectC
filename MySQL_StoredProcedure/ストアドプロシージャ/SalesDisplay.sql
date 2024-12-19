@@ -1,14 +1,18 @@
 DELIMITER //
 
 CREATE PROCEDURE SalesDisplay(
-    IN      A_offset                    DECIMAL,
-    IN      A_Max_row                   INT,
-    IN      A_date                      CHAR(7),
-    IN      A_customer_num              CHAR(5),
-    IN      phone_num                   VARCHAR(13),
-    IN      branch_num                  CHAR(3)
+    IN      A_offset                INT,
+    IN      A_Max_row               INT,
+    IN      A_date                  CHAR(7),
+    IN      A_customer_num          CHAR(5),
+    IN      A_phone_num               VARCHAR(13),
+    IN      A_branch_num              CHAR(3)
 )
 BEGIN
+    -- 引数がNULLの場合の変数処理
+    SET A_offset = IFNULL(A_offset,0);
+    SET A_Max_row = IFNULL(A_Max_row,100);
+
     -- 抽出条件により抽出し,一時テーブルを作成する。
     CREATE TEMPORARY TABLE temp AS
         SELECT 
@@ -35,15 +39,24 @@ BEGIN
         INNER JOIN  Category    AS ca
           ON im.category_num = ca.category_num
         INNER JOIN  Branch      AS br
-          ON od.branch_num = br.branch_num;
+          ON od.branch_num = br.branch_num
+        WHERE (A_date IS NULL OR od.order_date >= A_date)
+          AND (A_customer_num IS NULL OR od.customer_num = A_customer_num)
+          AND (A_phone_num IS NULL OR cm.phone_num = A_phone_num)
+          AND (A_branch_num IS NULL OR od.branch_num = A_branch_num)
+        ORDER BY od.order_num ;
 
       -- 抽出データの出力
-      SELECT * FROM temp;
+      SELECT * FROM temp
+      LIMIT A_Max_row OFFSET A_offset;
 
       -- データ件数の出力
       SELECT COUNT(*) AS '件数'
-      FROM temp;
+      FROM temp
+      LIMIT A_Max_row OFFSET A_offset;
 
+      -- 一時テーブルの破棄
+      DROP TABLE temp;
 END //
 
 DELIMITER ;

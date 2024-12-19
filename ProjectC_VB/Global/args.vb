@@ -10,4 +10,9 @@
         {{"年月日", 1}, {"顧客番号", 2}, {"商品番号", 3}, {"販売時単価", 4}, {"数量", 5}, {"支店番号", 7}, {"付与ポイント", 8}}
     '表示データをDataTableへ挿入後、加工が必要となる列番号の配列
     Public editColumnNum As Integer() = {1, 2, 5}
+
+    '売上参照画面の表示データ行数
+    Public MaxRowNum_SalesManagement As Integer = 10
+
+
 End Module
