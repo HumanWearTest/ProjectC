@@ -193,3 +193,37 @@ building_name
 room_num
 gender
 points
+
+
+
+
+-- テスト
+DELIMITER //
+
+
+CREATE PROCEDURE test(
+    IN direction  CHAR(4)
+)
+BEGIN 
+    -- 一時テーブル作成
+    create TEMPORARY table temp AS 
+        select *
+        from CustomerMaster;
+
+    -- 昇順、降順の切り替え
+    IF direction = 'DESC' THEN
+        select customer_num from temp
+        ORDER by customer_num DESC;
+    elseif direction = 'ASC' THEN
+        select customer_num from temp
+        ORDER by customer_num ASC;
+    end IF;
+
+    -- 一時テーブル削除
+    drop table temp;
+END //
+
+DELIMITER ;
+
+CALL test('ASC');
+CALL test('DESC');

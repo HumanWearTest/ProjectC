@@ -9,3 +9,7 @@ CREATE VIEW ItemNameComboData AS
 CREATE VIEW BranchNameComboData AS
     SELECT CONCAT(Branch_num,' ',Branch_name) AS '支店名' 
     FROM Branch;
+
+CREATE VIEW CategoryComboData AS
+    SELECT CONCAT(category_num,' ',category_name) AS '大分類名称' 
+    FROM Category;

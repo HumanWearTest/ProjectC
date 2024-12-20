@@ -31,11 +31,8 @@ Partial Class SearchFilterSubForm
         chb4 = New CheckBox()
         txtPhoneNum = New TextBox()
         chb5 = New CheckBox()
-        txtCategory = New TextBox()
         chb6 = New CheckBox()
-        TextBox5 = New TextBox()
         chb7 = New CheckBox()
-        TextBox6 = New TextBox()
         chb8 = New CheckBox()
         txtUpperLimit = New TextBox()
         chb9 = New CheckBox()
@@ -48,8 +45,10 @@ Partial Class SearchFilterSubForm
         btnUnCheckAll = New Button()
         gbxCheckBox = New GroupBox()
         gbxFilterText = New GroupBox()
-        ListBox1 = New ListBox()
-        Button4 = New Button()
+        comBranch = New ComboBox()
+        comItem = New ComboBox()
+        comCategory = New ComboBox()
+        btnTextReset = New Button()
         gbxCheckBox.SuspendLayout()
         gbxFilterText.SuspendLayout()
         SuspendLayout()
@@ -93,7 +92,7 @@ Partial Class SearchFilterSubForm
         Label1.BackColor = Color.YellowGreen
         Label1.BorderStyle = BorderStyle.FixedSingle
         Label1.Font = New Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, CByte(128))
-        Label1.Location = New Point(191, 4)
+        Label1.Location = New Point(215, 4)
         Label1.Name = "Label1"
         Label1.Size = New Size(112, 34)
         Label1.TabIndex = 3
@@ -115,7 +114,9 @@ Partial Class SearchFilterSubForm
         ' 
         txtCustomerName.Font = New Font("Yu Gothic UI", 14.25F)
         txtCustomerName.Location = New Point(6, 99)
+        txtCustomerName.MaxLength = 5
         txtCustomerName.Name = "txtCustomerName"
+        txtCustomerName.PlaceholderText = "顧客名の一部 5文字以内"
         txtCustomerName.Size = New Size(290, 33)
         txtCustomerName.TabIndex = 3
         ' 
@@ -154,14 +155,6 @@ Partial Class SearchFilterSubForm
         chb5.Text = "大分類名称【選択】"
         chb5.UseVisualStyleBackColor = True
         ' 
-        ' txtCategory
-        ' 
-        txtCategory.Font = New Font("Yu Gothic UI", 14.25F)
-        txtCategory.Location = New Point(6, 185)
-        txtCategory.Name = "txtCategory"
-        txtCategory.Size = New Size(290, 33)
-        txtCategory.TabIndex = 5
-        ' 
         ' chb6
         ' 
         chb6.AutoSize = True
@@ -174,14 +167,6 @@ Partial Class SearchFilterSubForm
         chb6.Text = "支店名【選択】"
         chb6.UseVisualStyleBackColor = True
         ' 
-        ' TextBox5
-        ' 
-        TextBox5.Font = New Font("Yu Gothic UI", 14.25F)
-        TextBox5.Location = New Point(6, 228)
-        TextBox5.Name = "TextBox5"
-        TextBox5.Size = New Size(290, 33)
-        TextBox5.TabIndex = 6
-        ' 
         ' chb7
         ' 
         chb7.AutoSize = True
@@ -193,14 +178,6 @@ Partial Class SearchFilterSubForm
         chb7.TabIndex = 0
         chb7.Text = "商品番号【選択】"
         chb7.UseVisualStyleBackColor = True
-        ' 
-        ' TextBox6
-        ' 
-        TextBox6.Font = New Font("Yu Gothic UI", 14.25F)
-        TextBox6.Location = New Point(6, 271)
-        TextBox6.Name = "TextBox6"
-        TextBox6.Size = New Size(290, 33)
-        TextBox6.TabIndex = 7
         ' 
         ' chb8
         ' 
@@ -291,7 +268,7 @@ Partial Class SearchFilterSubForm
         ' btnSearch
         ' 
         btnSearch.Font = New Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(128))
-        btnSearch.Location = New Point(211, 505)
+        btnSearch.Location = New Point(199, 505)
         btnSearch.Name = "btnSearch"
         btnSearch.Size = New Size(104, 33)
         btnSearch.TabIndex = 11
@@ -328,53 +305,73 @@ Partial Class SearchFilterSubForm
         ' 
         ' gbxFilterText
         ' 
+        gbxFilterText.Controls.Add(comBranch)
         gbxFilterText.Controls.Add(TextBox10)
+        gbxFilterText.Controls.Add(comItem)
         gbxFilterText.Controls.Add(txtStartDate)
+        gbxFilterText.Controls.Add(comCategory)
         gbxFilterText.Controls.Add(txtEndDate)
         gbxFilterText.Controls.Add(txtCustomerName)
         gbxFilterText.Controls.Add(txtPhoneNum)
-        gbxFilterText.Controls.Add(txtCategory)
         gbxFilterText.Controls.Add(txtLowerLimit)
-        gbxFilterText.Controls.Add(TextBox5)
-        gbxFilterText.Controls.Add(TextBox6)
         gbxFilterText.Controls.Add(txtUpperLimit)
         gbxFilterText.Location = New Point(229, 39)
         gbxFilterText.Name = "gbxFilterText"
-        gbxFilterText.Size = New Size(337, 443)
+        gbxFilterText.Size = New Size(308, 443)
         gbxFilterText.TabIndex = 5
         gbxFilterText.TabStop = False
         ' 
-        ' ListBox1
+        ' comBranch
         ' 
-        ListBox1.FormattingEnabled = True
-        ListBox1.ItemHeight = 15
-        ListBox1.Location = New Point(584, 43)
-        ListBox1.Name = "ListBox1"
-        ListBox1.Size = New Size(219, 439)
-        ListBox1.TabIndex = 6
+        comBranch.Font = New Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(128))
+        comBranch.FormattingEnabled = True
+        comBranch.Location = New Point(6, 228)
+        comBranch.Name = "comBranch"
+        comBranch.Size = New Size(290, 33)
+        comBranch.TabIndex = 14
         ' 
-        ' Button4
+        ' comItem
         ' 
-        Button4.Location = New Point(625, 505)
-        Button4.Name = "Button4"
-        Button4.Size = New Size(110, 33)
-        Button4.TabIndex = 14
-        Button4.Text = "Button4"
-        Button4.UseVisualStyleBackColor = True
+        comItem.Font = New Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(128))
+        comItem.FormattingEnabled = True
+        comItem.Location = New Point(6, 271)
+        comItem.Name = "comItem"
+        comItem.Size = New Size(290, 33)
+        comItem.TabIndex = 14
+        ' 
+        ' comCategory
+        ' 
+        comCategory.Font = New Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(128))
+        comCategory.FormattingEnabled = True
+        comCategory.Location = New Point(6, 185)
+        comCategory.Name = "comCategory"
+        comCategory.Size = New Size(290, 33)
+        comCategory.TabIndex = 14
+        ' 
+        ' btnTextReset
+        ' 
+        btnTextReset.Font = New Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(128))
+        btnTextReset.Location = New Point(331, 505)
+        btnTextReset.Name = "btnTextReset"
+        btnTextReset.Size = New Size(104, 33)
+        btnTextReset.TabIndex = 11
+        btnTextReset.Text = "リセット"
+        btnTextReset.UseVisualStyleBackColor = True
         ' 
         ' SearchFilterSubForm
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(805, 550)
-        Controls.Add(Button4)
-        Controls.Add(ListBox1)
+        ClientSize = New Size(554, 551)
         Controls.Add(gbxFilterText)
         Controls.Add(gbxCheckBox)
         Controls.Add(Label1)
+        Controls.Add(btnTextReset)
         Controls.Add(btnSearch)
         Controls.Add(btnUnCheckAll)
         Controls.Add(btnCheckAll)
+        MaximumSize = New Size(570, 590)
+        MinimumSize = New Size(570, 590)
         Name = "SearchFilterSubForm"
         Text = "詳細検索"
         gbxCheckBox.ResumeLayout(False)
@@ -394,11 +391,8 @@ Partial Class SearchFilterSubForm
     Friend WithEvents chb4 As CheckBox
     Friend WithEvents txtPhoneNum As TextBox
     Friend WithEvents chb5 As CheckBox
-    Friend WithEvents txtCategory As TextBox
     Friend WithEvents chb6 As CheckBox
-    Friend WithEvents TextBox5 As TextBox
     Friend WithEvents chb7 As CheckBox
-    Friend WithEvents TextBox6 As TextBox
     Friend WithEvents chb8 As CheckBox
     Friend WithEvents txtUpperLimit As TextBox
     Friend WithEvents chb9 As CheckBox
@@ -411,6 +405,9 @@ Partial Class SearchFilterSubForm
     Friend WithEvents btnUnCheckAll As Button
     Friend WithEvents gbxCheckBox As GroupBox
     Friend WithEvents gbxFilterText As GroupBox
-    Friend WithEvents ListBox1 As ListBox
-    Friend WithEvents Button4 As Button
+    Friend WithEvents btnTextReset As Button
+    Friend WithEvents comCustomer As ComboBox
+    Friend WithEvents comItem As ComboBox
+    Friend WithEvents comBranch As ComboBox
+    Friend WithEvents comCategory As ComboBox
 End Class

@@ -1,17 +1,33 @@
+DROP PROCEDURE SalesDisplay;
+
 DELIMITER //
 
 CREATE PROCEDURE SalesDisplay(
     IN      A_offset                INT,
     IN      A_Max_row               INT,
-    IN      A_date                  CHAR(7),
-    IN      A_customer_num          CHAR(5),
-    IN      A_phone_num               VARCHAR(13),
-    IN      A_branch_num              CHAR(3)
+    IN      A_start_date            CHAR(7),
+    IN      A_end_date              CHAR(7),
+    IN      A_customer_name         CHAR(5),
+    IN      A_phone_num             CHAR(13),
+    IN      A_category_num          CHAR(2),
+    IN      A_branch_num            CHAR(3),
+    IN      A_item_num              CHAR(5),
+    IN      A_upper_points          INT,
+    IN      A_lower_points          INT
 )
 BEGIN
     -- 引数がNULLの場合の変数処理
+    DECLARE start_date DATE;
+    DECLARE end_date DATE;  
+
     SET A_offset = IFNULL(A_offset,0);
     SET A_Max_row = IFNULL(A_Max_row,100);
+    IF A_start_date IS NOT NULL THEN
+      SET start_date = CAST(CONCAT(A_start_date,'/01') AS DATE);
+    END IF;
+    IF A_end_date IS NOT NULL THEN
+      SET end_date = DATE_ADD(CAST(CONCAT(A_end_date,'/01') AS DATE),INTERVAL 1 MONTH);
+    END IF;
 
     -- 抽出条件により抽出し,一時テーブルを作成する。
     CREATE TEMPORARY TABLE temp AS
@@ -40,10 +56,16 @@ BEGIN
           ON im.category_num = ca.category_num
         INNER JOIN  Branch      AS br
           ON od.branch_num = br.branch_num
-        WHERE (A_date IS NULL OR od.order_date >= A_date)
-          AND (A_customer_num IS NULL OR od.customer_num = A_customer_num)
+        WHERE (A_start_date IS NULl OR od.order_date >= start_date)
+          AND (A_end_date IS NULl OR od.order_date < end_date)
+          AND (A_customer_name IS NULL OR CONCAT(cm.last_name,' ',cm.first_name) LIKE CONCAT('%',A_customer_name,'%'))
           AND (A_phone_num IS NULL OR cm.phone_num = A_phone_num)
+          AND (A_category_num IS NULL OR ca.category_num = A_category_num)
           AND (A_branch_num IS NULL OR od.branch_num = A_branch_num)
+          AND (A_item_num  IS NULL OR od.item_num  = A_item_num )
+          AND (A_upper_points  IS NULL OR ROUND(od.unit_price * od.quantity * 0.01 , 0) <= A_upper_points )
+          AND (A_lower_points IS NULL OR ROUND(od.unit_price * od.quantity * 0.01 , 0) >= A_lower_points)
+
         ORDER BY od.order_num ;
 
       -- 抽出データの出力
@@ -52,13 +74,27 @@ BEGIN
 
       -- データ件数の出力
       SELECT COUNT(*) AS '件数'
-      FROM temp
-      LIMIT A_Max_row OFFSET A_offset;
+      FROM temp;
 
       -- 一時テーブルの破棄
       DROP TABLE temp;
+
 END //
 
 DELIMITER ;
 
-CALL SalesDisplay(NULL,NULL,NULL,NULL,NULL,NUll);
+
+
+CALL SalesDisplay(0,10,'2000/05','2050/06',NULL,NULL,NULL,NUll,NULL,1000,5000);
+
+    IN      A_offset                INT,
+    IN      A_Max_row               INT,
+    IN      A_start_date            DATE,
+    IN      A_end_date              DATE,
+    IN      A_customer_num          CHAR(5),
+    IN      A_phone_num             CHAR(13),
+    IN      A_category_num          CHAR(2),
+    IN      A_branch_num            CHAR(3),
+    IN      A_item_num              CHAR(5),
+    IN      A_upper_points          INT,
+    IN      A_lower_points          INT
